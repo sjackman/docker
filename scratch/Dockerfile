@@ -10,8 +10,7 @@ RUN HOMEBREW_NO_AUTO_UPDATE=1 brew install glibc \
 FROM scratch
 COPY --from=base /home/linuxbrew /home/linuxbrew
 ENV HOME=/home/linuxbrew \
-	PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin \
-	USER=linuxbrew
+	PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin
 RUN ["ln", "-s", "/home/linuxbrew/.linuxbrew/bin", "/bin"]
 RUN ln -s /home/linuxbrew/.linuxbrew/lib /lib \
 	&& ln -s /lib /lib64 \
@@ -21,7 +20,6 @@ RUN ln -s /home/linuxbrew/.linuxbrew/lib /lib \
 	&& printf "root:x:0:0:root:/root:/bin/bash\nlinuxbrew:x:1000:1000:linuxbrew:/home/linuxbrew:/bin/bash\n" >/etc/passwd \
 	&& chown -R 1000:1000 /bin /etc /lib /home /usr /var
 
-USER linuxbrew
 WORKDIR /home/linuxbrew
 RUN LD_LIBRARY_PATH=/lib brew vendor-install ruby \
 	&& rm -rf ~/.cache \

@@ -7,11 +7,9 @@ RUN zypper --non-interactive install curl git glibc-i18ndata glibc-locale make s
 	&& useradd -m -s /bin/bash linuxbrew \
 	&& echo 'linuxbrew ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers
 
-USER linuxbrew
 WORKDIR /home/linuxbrew
 ENV PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH \
-    SHELL=/bin/bash \
-	USER=linuxbrew
+    SHELL=/bin/bash
 
 RUN yes | sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)" \
 	&& brew config

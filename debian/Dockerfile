@@ -13,7 +13,6 @@ RUN apt-get update \
 	&& useradd -m -s /bin/bash linuxbrew \
 	&& echo 'linuxbrew ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers
 
-USER linuxbrew
 WORKDIR /home/linuxbrew
 ENV LANG=en_US.UTF-8 \
 	PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH \

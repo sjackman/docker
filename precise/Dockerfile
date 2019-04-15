@@ -9,11 +9,9 @@ RUN apt-get update \
 	&& useradd -m -s /bin/bash linuxbrew \
 	&& echo 'linuxbrew ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers
 
-USER linuxbrew
 WORKDIR /home/linuxbrew
 ENV PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH \
-	SHELL=/bin/bash \
-	USER=linuxbrew
+	SHELL=/bin/bash
 
 RUN git clone https://github.com/Homebrew/brew .linuxbrew/Homebrew \
 	&& mkdir /home/linuxbrew/.linuxbrew/bin \
